@@ -15,6 +15,7 @@ class WindowsScreencast implements SystemScreencast {
     nameString = name;
     formatString = format;
     pathString = path;
+    imagePathList.clear();
     final monitorEnumProcPtr = Pointer.fromFunction<
         Int32 Function(
             IntPtr, IntPtr, Pointer<NativeType>, IntPtr)>(monitorEnumProc, 0);
@@ -34,6 +35,7 @@ var nameString = "";
 var formatString = ImageFormat.png;
 
 int monitorEnumProc(int hMonitor, int hdcMonitor, Pointer lpRect, int dwData) {
+  pathList.clear();
   monitorCount++;
   final rect = lpRect.cast<RECT>().ref;
   execute(
